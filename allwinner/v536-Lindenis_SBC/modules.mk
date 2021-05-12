@@ -8,7 +8,12 @@ define KernelPackage/vin-v4l2
   SUBMENU:=$(VIDEO_MENU)
   TITLE:=Video input support (staging)
   DEPENDS:=
-  FILES:=$(LINUX_DIR)/drivers/media/v4l2-core/videobuf2-core.ko
+  FILES:=$(LINUX_DIR)/drivers/net/wireless/ath/ath.ko
+  FILES+=$(LINUX_DIR)/drivers/net/wireless/ath/ath9k/ath9k_common.ko
+  FILES+=$(LINUX_DIR)/drivers/net/wireless/ath/ath9k/ath9k.ko
+  FILES+=$(LINUX_DIR)/drivers/net/wireless/ath/ath9k/ath9k_hw.ko
+  FILES+=$(LINUX_DIR)/drivers/net/wireless/ath/ath9k/ath9k_htc.ko
+  FILES+=$(LINUX_DIR)/drivers/media/v4l2-core/videobuf2-core.ko
   FILES+=$(LINUX_DIR)/drivers/media/v4l2-core/videobuf2-dma-contig.ko
   FILES+=$(LINUX_DIR)/drivers/media/v4l2-core/videobuf2-memops.ko
   FILES+=$(LINUX_DIR)/drivers/media/v4l2-core/videobuf2-v4l2.ko
@@ -18,7 +23,7 @@ define KernelPackage/vin-v4l2
   FILES+=$(LINUX_DIR)/drivers/media/platform/sunxi-vin/modules/sensor/tp9950.ko
   FILES+=$(LINUX_DIR)/drivers/iio/imu/da380/da380.ko
   FILES+=$(LINUX_DIR)/drivers/media/platform/sunxi-vin/vin_v4l2.ko
-  AUTOLOAD:=$(call AutoProbe,videobuf2-core videobuf2-dma-contig videobuf2-memops videobuf2-v4l2 vin_io imx317_mipi imx307_mipi tp9950 da380 vin_v4l2)
+  AUTOLOAD:=$(call AutoProbe,ath ath9k_htc ath9k_common ath9k ath9k_hw videobuf2-core videobuf2-dma-contig videobuf2-memops videobuf2-v4l2 vin_io imx317_mipi imx307_mipi tp9950 da380 vin_v4l2)
 endef
 
 define KernelPackage/vin_v4l2/description
@@ -31,7 +36,7 @@ define KernelPackage/EISE-ISE
   SUBMENU:=$(VIDEO_MENU)
   TITLE:=Video ISE&EISE support (staging)
   DEPENDS:=
-  UTOLOAD:=$(call AutoProbe,sunxi_ise sunxi_eise)
+  AUTOLOAD:=$(call AutoProbe,sunxi_ise sunxi_eise)
 endef
 
 define KernelPackage/EISE-ISE/description
